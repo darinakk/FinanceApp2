@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 src/main/resources/application.properties
+=======
+src/main/resources/application.properties
+>>>>>>> 32889f9 (Fixade mitt lösen i gitignore)
