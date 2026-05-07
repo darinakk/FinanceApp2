@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 CREATE TABLE users (        -- Skapar tabellen 'users' i databasen
 
 -- Unikt ID för varje användare
@@ -20,4 +18,4 @@ INSERT INTO users (name, balance) VALUES ('William', 500.00);
 INSERT INTO users (name,balance) VALUES('Mikael', 50000.00);
 INSERT INTO users (name,balance) VALUES ('Bosse', 4500.00);
 
->>>>>>> Stashed changes
+
