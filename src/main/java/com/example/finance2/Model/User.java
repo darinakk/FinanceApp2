@@ -2,7 +2,7 @@ package com.example.finance2.Model;
 import jakarta.persistence.*; //Importerar verktygen för databasen
 // ETIKETTER (Annotationer)
 @Entity// Säger till Java: "Detta är en databasmall"
-@Table(name = "users")
+@Table(name = " users")
 public class User {
     //VARIABLER
 
