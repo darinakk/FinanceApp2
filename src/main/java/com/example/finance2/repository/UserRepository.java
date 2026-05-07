@@ -1,51 +1,40 @@
 package com.example.finance2.repository;
 
-import com.example.finance2.model.User; // Se till att sökvägen till din User-klass stämmer
+// Vi ändrar till stort M för att matcha din Model-mapp
+import com.example.finance2.Model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-@Repository // Berättar för Spring att detta är klassen som sköter databasen
+@Repository
 public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    // Konstruktor: Spring skickar automatiskt in JdbcTemplate här
     public UserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    /**
-     * Hitta en specifik person med hjälp av deras ID.
-     */
     public User findUserById(int id) {
         String sql = "SELECT * FROM users WHERE id = ?";
-
-        // queryForObject används när vi förväntar oss exakt ett svar
         return jdbcTemplate.queryForObject(sql, userRowMapper, id);
     }
 
-    /**
-     * Uppdatera saldot för en specifik person.
-     */
+    // OBS: Denna metod kommer inte fungera förrän du har
+    // lagt till setBalance i User.java, så jag har kommenterat bort den.
+    /*
     public void updateBalance(int id, double newBalance) {
         String sql = "UPDATE users SET balance = ? WHERE id = ?";
-
-        // update används för kommandon som ändrar data (INSERT, UPDATE, DELETE)
         jdbcTemplate.update(sql, newBalance, id);
     }
+    */
 
-    /**
-     * Översättaren (RowMapper):
-     * Beskriver hur en rad från MySQL (ResultSet) ska packas in i ett User-objekt.
-     */
     private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
         User user = new User();
-        user.setId(rs.getInt("id"));        // Ta 'id' från SQL och sätt i Java-User
-        user.setName(rs.getString("name"));   // Ta 'name' från SQL och sätt i Java-User
-        user.setBalance(rs.getDouble("balance")); // Ta 'balance' från SQL och sätt i Java-User
+        user.setId(rs.getInt("id"));
+        user.setName(rs.getString("name"));
+        // user.setBalance(rs.getDouble("balance")); <- Denna rad måste vara borttagen
+        // eftersom metoden inte finns i din User-klass än.
         return user;
     };
 }

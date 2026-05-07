@@ -2,7 +2,7 @@ package com.example.finance2.Model;
 import jakarta.persistence.*; //Importerar verktygen för databasen
 // ETIKETTER (Annotationer)
 @Entity// Säger till Java: "Detta är en databasmall"
-@Table(name = " users")
+@Table(name = "users")
 public class User {
     //VARIABLER
 
@@ -41,6 +41,15 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    //Lade getters och setters för balansen så att UserRepository även kan korrigera det.
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
 
