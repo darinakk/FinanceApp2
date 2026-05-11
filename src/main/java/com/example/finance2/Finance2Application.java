@@ -14,20 +14,19 @@ public class Finance2Application {
     }
 
     @Bean
-    public CommandLineRunner testDeposit(UserService userService) {
+    public CommandLineRunner testBankLogic(UserService userService) {
         return args -> {
-            System.out.println("--- STARTAR TEST AV INSÄTTNING ---");
+            System.out.println("\n--- STARTAR BANK-TESTER ---");
 
-            // Vi testar att sätta in 500 kr på användare med ID 1 (Darin)
-            // Kolla i din schema.sql vilket ID som skapades först
-            try {
-                userService.depositMoney(1, 500.0);
-                System.out.println("Testet lyckades!");
-            } catch (Exception e) {
-                System.out.println("Testet misslyckades: " + e.getMessage());
-            }
+            // TEST 1: Ett godkänt uttag (William har 500 kr)
+            System.out.println("Test 1: Försöker ta ut 200 kr från William...");
+            userService.withdrawMoney(2, 200.0);
 
-            System.out.println("--- TEST AVSLUTAT ---");
+            // TEST 2: Ett för stort uttag (Ska misslyckas)
+            System.out.println("\nTest 2: Försöker ta ut 10 000 kr från William...");
+            userService.withdrawMoney(2, 10000.0);
+
+            System.out.println("--- TESTER AVSLUTADE ---\n");
         };
     }
 }
