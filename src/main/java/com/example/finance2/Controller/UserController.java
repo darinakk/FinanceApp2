@@ -41,4 +41,21 @@ public class UserController {
         return "Insättning på " + amount + " kr lyckades för användare " + id;
     }
 
+    /**
+     * Endpoint för att ta ut pengar.
+     * Webbadress: POST http://localhost:8080/users/1/withdraw?amount=200
+     */
+    @PostMapping("/users/{id}/withdraw")
+    public String withdraw(@PathVariable int id, @RequestParam double amount) {
+        // Vi frågar servicen om uttaget går att genomföra
+        boolean success = userService.withdrawMoney(id, amount);
+
+        if (success) {
+            return "Uttag på " + amount + " kr lyckades!";
+        } else {
+            // Här fångar vi upp om servicen sa 'false' (inte tillräckligt med pengar)
+            return "Uttaget misslyckades: Du har inte tillräckligt med pengar på kontot.";
+        }
+    }
+
 }

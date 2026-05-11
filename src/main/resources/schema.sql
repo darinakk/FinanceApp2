@@ -40,7 +40,7 @@ CREATE TABLE transactions
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-INSERT INTO users (name, balance, role) VALUES ('Darin', 10000000.00,'USER');
+INSERT INTO users (name, balance, role) VALUES ('Darin', 100.00,'USER');
 INSERT INTO users (name, balance, role) VALUES ('William', 500.00, 'ADMIN');
 INSERT INTO users (name,balance, role) VALUES('Mikael', 50000.00, 'USER');
 INSERT INTO users (name,balance, role) VALUES ('Bosse', 4500.00, 'USER');
