@@ -20,21 +20,19 @@ public class UserRepository {
         return jdbcTemplate.queryForObject(sql, userRowMapper, id);
     }
 
-    // OBS: Denna metod kommer inte fungera förrän du har
-    // lagt till setBalance i User.java, så jag har kommenterat bort den.
-    /*
+
+
     public void updateBalance(int id, double newBalance) {
         String sql = "UPDATE users SET balance = ? WHERE id = ?";
         jdbcTemplate.update(sql, newBalance, id);
     }
-    */
+
 
     private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
         User user = new User();
         user.setId(rs.getInt("id"));
         user.setName(rs.getString("name"));
-        // user.setBalance(rs.getDouble("balance")); <- Denna rad måste vara borttagen
-        // eftersom metoden inte finns i din User-klass än.
+        user.setBalance(rs.getDouble("balance"));
         return user;
     };
 }
