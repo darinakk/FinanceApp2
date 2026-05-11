@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    // Final gör att referensen till repositoryt inte kan ändras efter start
+    // Gör att referensen till repositoryt inte kan ändras efter start
     private final UserRepository userRepository;
 
     //Konstruktor för Dependency Injection. Spring skickar in UserRepository automatiskt.
@@ -41,7 +41,7 @@ public class UserService {
     /**
      * Metod för att ta ut pengar. Innehåller en viktig säkerhetskontroll.
      */
-    public void withdrawMoney(int userId, double amount){
+    public boolean withdrawMoney(int userId, double amount){
         // 1. Hämta användaren för att kontrollera nuvarande saldo
         User user = userRepository.findUserById(userId);
         double currentBalance = user.getBalance();
@@ -51,7 +51,7 @@ public class UserService {
 
             // Om beloppet är för stort skriver vi ut ett fel och avbryter med 'return'
             System.out.println("MISSLYCKAT UTTAG: Användaren" + user.getName() + "har för lite pengar (Saldo:" + currentBalance + "kr).");
-            return;
+            return false;
         }
 
         // 3. Om det fanns tillräckligt med pengar: Räkna ut det nya saldot
@@ -62,6 +62,7 @@ public class UserService {
 
         //%.2f används för att visa saldot med två decimaler
         System.out.printf("UTTAG KLART %s tog ut %.2f kr. Nytt saldo: %.2f kr.%n", user.getName(), amount, newBalance);
+        return true;
 
 
     }
