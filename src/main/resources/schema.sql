@@ -20,11 +20,23 @@ CREATE TABLE users
 
 );
 
+-- Skapar tabellen 'transactions' för att spara historik över alla händelser
 CREATE TABLE transactions
 (
+    -- Unikt ID för varje enskild transaktion (1, 2, 3...)
     id      BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    -- Koppling till användaren: Håller koll på VEM som gjorde transaktionen
+    -- Måste vara av samma typ (BIGINT) som id i tabellen 'users'
     user_id BIGINT,
+
+    -- Beloppet för transaktionen (t.ex. 500.00 eller -200.00)
+    -- DECIMAL(10,2) används för att undvika avrundningsfel med pengar
     amount  DECIMAL(10, 2),
+
+    -- FOREIGN KEY (Främmande nyckel): En säkerhetsspärr i databasen
+    -- Den garanterar att vi inte kan skapa en transaktion för ett user_id som inte finns.
+    -- Den "länkar" ihop transactions-tabellen med users-tabellen.
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
