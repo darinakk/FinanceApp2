@@ -11,11 +11,19 @@ CREATE TABLE users (        -- Skapar tabellen 'users' i databasen
     -- Användarens saldo (pengar)
     -- DECIMAL(10,2) = max 10 siffror, 2 decimaler (t.ex. 12345.67)
     -- används för pengar för att undvika avrundningsfel
-                       balance DECIMAL(10,2)
+                       balance DECIMAL(10,2),
+
+                       role ENUM('USER', 'ADMIN') NOT NULL // kolla vad enu
+
+
 );
 INSERT INTO users (name, balance) VALUES ('Darin', 10000000.00);
 INSERT INTO users (name, balance) VALUES ('William', 500.00);
 INSERT INTO users (name,balance) VALUES('Mikael', 50000.00);
-INSERT INTO users (name,balance) VALUES ('Bosse', 4500.00);
+INSERT INTO users (name,balance, role) VALUES ('Bosse', 4500.00, 'USER');
+
+CREATE TABLE transactions(
+
+)
 
 

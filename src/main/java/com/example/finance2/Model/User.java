@@ -43,5 +43,14 @@ public class User {
         this.name = name;
     }
 
+    //Lade getters och setters för balansen så att UserRepository även kan korrigera det.
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
 
 }
