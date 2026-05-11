@@ -38,7 +38,7 @@ public class UserController {
         // Vi anropar servicen som sköter beräkningen och uppdaterar databasen
         userService.depositMoney(id, amount);
         // Vi returnerar en textbekräftelse till den som anropade API:et
-        return "Insättning på" + amount + "kr lyckades för användare " + id;
+        return "Insättning på " + amount + " kr lyckades för användare " + id;
     }
 
 }
