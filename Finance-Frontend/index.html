@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceApp 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+    <h2>Banken FinanceApp</h2>
+
+    <div id="loginPage">
+        <h3>Logga in</h3>
+        <input type="text" id="username" placeholder="Användarnamn">
+        <input type="password" id="password" placeholder="Lösenord">
+        <button class="btn-primary" id="loginBtn">Logga in</button>
+    </div>
+
+    <div id="dashboardPage" style="display: none;">
+        <h3 id="welcomeText">Välkommen</h3>
+
+        <div class="info-box">
+            <p>Ditt saldo: <strong id="balanceText">0</strong> kr</p>
+        </div>
+
+        <div class="section">
+            <h4>Hantera pengar</h4>
+            <input type="number" id="amount" placeholder="Belopp">
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-success" id="depositBtn">Sätt in</button>
+                <button class="btn-primary" id="withdrawBtn" style="background-color: #dc3545;">Ta ut</button>
+            </div>
+        </div>
+
+        <div id="adminArea" style="display: none;">
+            <hr>
+            <h4>Admin Verktyg</h4>
+            <button class="btn-primary" id="logBtn">Se alla transaktioner</button>
+            <div id="logContent" style="font-size: 0.8rem; margin-top: 10px; max-height: 150px; overflow-y: auto;"></div>
+        </div>
+
+        <button onclick="location.reload()" style="margin-top: 20px; background: none; color: gray; border: 1px solid #ccc; cursor: pointer; padding: 5px; border-radius: 4px;">Logga ut</button>
+    </div>
+
+    <div id="message"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
