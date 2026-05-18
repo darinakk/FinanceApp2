@@ -8,10 +8,13 @@ public class User {
 
     @Id // Säger: "Detta är den unika nyckel"
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Säger: "MySQL sköter numreringen 1, 2, 3 själv"
-
     private int id; // Ett heltal för ID
     private String name; // En textsträng för namnet
-    private double balance; // Ett decimaltal för pengarna
+    private String password;
+    private double balance;// Ett decimaltal för pengarna
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     //KONSTRUKTORER (Verktygen för att skapa en användare i koden)
 
@@ -19,9 +22,11 @@ public class User {
     public User(){}
 
     // En konstruktor för att snabbt kunna skapa användare
-    public User(String name, double balance){
+    public User(String name,String password, double balance, Role role){
         this.name = name; // Sätt namnet på den vi skapar
         this.balance = balance; //Sätt saldot på den vi skapar
+        this.role = role;
+        this.password = password;
     }
 
     // GETTERS & SETTERS (Dörrarna till variablerna)
@@ -52,5 +57,19 @@ public class User {
         this.balance = balance;
     }
 
+    public Role getRole() {
+        return role;
+    }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

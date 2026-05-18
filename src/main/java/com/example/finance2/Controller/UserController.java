@@ -3,6 +3,8 @@ package com.example.finance2.Controller;
 import com.example.finance2.Model.User;
 import com.example.finance2.Service.UserService;
 import org.springframework.web.bind.annotation.*;
+@CrossOrigin(origins = "http://localhost:63342")
+
 /**
  * @RestController talar om för Spring att den här klassen ska hantera HTTP-anrop.
  * Den skickar automatiskt tillbaka data (som t.ex. User-objekt) i JSON-format.
