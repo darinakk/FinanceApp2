@@ -2,27 +2,22 @@ DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                       name VARCHAR(255) NOT NULL,
-                       password VARCHAR(255) NOT NULL, -- Ny kolumn!
-                       balance DECIMAL(10, 2),
-                       role ENUM ('USER', 'ADMIN') NOT NULL
+    id       BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name     VARCHAR(255)           NOT NULL,
+    password VARCHAR(255)           NOT NULL, -- BCrypt-hash, aldrig klartext
+    balance  DECIMAL(15, 2)         DEFAULT 0 NOT NULL,
+    role     ENUM ('USER', 'ADMIN') NOT NULL,
+    UNIQUE (name),
+    CHECK (balance >= 0)
 );
 
 CREATE TABLE transactions (
-                              id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                              user_id BIGINT,
-                              type VARCHAR(20),
-                              amount DECIMAL(10, 2),
-                              timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                              FOREIGN KEY (user_id) REFERENCES users (id)
+    id         BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id    BIGINT         NOT NULL,
+    type       VARCHAR(20)    NOT NULL,
+    amount     DECIMAL(15, 2) NOT NULL,
+    created_at DATETIME       DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
--- Lösenordet är '123' för alla för att göra det enkelt att testa
-INSERT INTO users (name, password, balance, role) VALUES ('Darin', '123', 100.00, 'USER');
-INSERT INTO users (name, password, balance, role) VALUES ('William', '123', 500.00, 'ADMIN');
-INSERT INTO users (name, password, balance, role) VALUES ('Mikael', '123', 50000.00, 'USER');
-
-
-
-
+-- Demoanvändarna skapas av DemoDataLoader så att lösenorden kan hashas med BCrypt

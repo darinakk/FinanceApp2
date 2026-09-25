@@ -16,7 +16,7 @@
     <artifactId>finance2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>finance2</name>
-    <description>finance2</description>
+    <description>Banking web app: Spring Boot REST API with a JavaScript frontend</description>
 
     <properties>
         <java.version>17</java.version>
@@ -30,10 +30,16 @@
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
 
-        <!-- JPA (DETTA FIXAR DITT FEL) -->
+        <!-- JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- SÄKERHET (inloggning, BCrypt-hashade lösenord, roller) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <!-- MYSQL -->
@@ -41,6 +47,23 @@
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- TEST (H2 ersätter MySQL i testerna så att de kan köras utan databas) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
